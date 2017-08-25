@@ -1,0 +1,14 @@
+.plan-svg{
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+
+
+  background-color: #00528c;
+
+}
+.plan-container{
+  position: relative;
+  display: block;
+    max-width: 1000px;
+  margin: 10px auto;
+}
