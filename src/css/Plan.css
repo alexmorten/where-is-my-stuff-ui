@@ -1,14 +1,22 @@
 .plan-svg{
   border: 1px solid lightgrey;
-  border-radius: 10px;
+  border-radius: 3px;
 
 
-  background-color: #00528c;
+  background-color: #050490;
 
 }
 .plan-container{
   position: relative;
   display: block;
-    max-width: 1000px;
+    max-width: 800px;
   margin: 10px auto;
+}
+.gridline{
+  stroke:rgba(255, 255, 255, 0.18);
+  stroke-width:1px;
+  shape-rendering: geometricprecision;
+}
+.mouse-line{
+  stroke: rgba(255,255,255,.5);
 }

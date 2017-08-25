@@ -1,11 +1,14 @@
 import React from 'react';
 
 class ResponsiveSvg extends React.Component{
-  mouseHandler= (e)=>{
-    var loc = cursorPoint(this.svg,e)
-    console.log(loc);
-    if(this.props.onClick){
-      this.props.onClick(loc);
+
+  mouseHandlerFactory = (func)=>{
+    return (e)=>{
+      var loc = cursorPoint(this.svg,e);
+      console.log(loc);
+      if(func){
+        func(loc);
+      }
     }
   }
 render(){
@@ -15,8 +18,11 @@ render(){
       preserveAspectRatio="xMinYMin meet"
       className={`responsive-svg ${this.props.className || "" }`}
       ref={(element)=>{this.svg = element;}}
-      onClick={this.mouseHandler}
-
+      onMouseDown={this.mouseHandlerFactory(this.props.onMouseDown)}
+      onMouseMove={this.mouseHandlerFactory(this.props.onMove)}
+      onMouseUp={this.mouseHandlerFactory(this.props.onMouseUp)}
+      onMouseLeave={this.mouseHandlerFactory(this.props.onMouseLeave)}
+      
 
       >
       {this.props.children}
