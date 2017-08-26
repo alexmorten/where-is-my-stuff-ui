@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/App.css';
-import NewPlan from './NewPlan';
+
 import PlanListing from './PlanListing';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
         </div>
         <div className="App-body">
           <PlanListing/>
-          <NewPlan/>
+    
         </div>
       </div>
     );

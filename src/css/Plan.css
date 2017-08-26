@@ -19,4 +19,5 @@
 }
 .mouse-line{
   stroke: rgba(255,255,255,.5);
+  stroke-width:2px;
 }
