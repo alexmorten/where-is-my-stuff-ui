@@ -4,9 +4,8 @@ class ResponsiveSvg extends React.Component{
 
   mouseHandlerFactory = (func)=>{
     return (e)=>{
-      var loc = cursorPoint(this.svg,e);
-      console.log(loc);
       if(func){
+        var loc = cursorPoint(this.svg,e);
         func(loc);
       }
     }
@@ -22,7 +21,7 @@ render(){
       onMouseMove={this.mouseHandlerFactory(this.props.onMove)}
       onMouseUp={this.mouseHandlerFactory(this.props.onMouseUp)}
       onMouseLeave={this.mouseHandlerFactory(this.props.onMouseLeave)}
-      
+
 
       >
       {this.props.children}
