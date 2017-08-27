@@ -19,11 +19,13 @@ class Plan extends React.Component{
       gridlines.push(<Line p1={{x:0,y:y}} p2={{x:width,y:y}} key={`y:${y}`} className="gridline"/>)
     }
     const lines = this.props.representation.lines || [];
+
     const lineItems = lines.map((line,index)=>{
-      return <Line p1={line.p1} p2={line.p2} key={index}/>
+      return <Line p1={line.p1} p2={line.p2} key={index} style={line.color ? {stroke:line.color}: {}}/>
     })
     return (
       <div className="plan-container">
+        {this.props.actionBar}
         <ResponsiveSvg className="plan-svg" {...this.props}>
           {gridlines}
           {lineItems}

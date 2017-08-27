@@ -9,11 +9,19 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+
   padding: 20px;
   color: white;
 }
-
+a{
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  cursor: pointer;
+}
+.link-active{
+  border-bottom: 2px solid white;
+}
 .App-intro {
   font-size: large;
 }

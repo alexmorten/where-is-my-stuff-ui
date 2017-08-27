@@ -2,6 +2,8 @@ import React from 'react';
 import Plan from './Plan';
 import Store from './services/Store';
 import './css/SinglePlan.css';
+import NewPlan from './NewPlan';
+
 class SinglePlan extends React.Component{
   render(){
     return (
@@ -21,7 +23,7 @@ class PlanListing extends React.Component{
   }
   getPlans = ()=>{
     Store.receive("plans",(plans)=>{
-        console.log(plans);
+
         this.setState({plans:plans});
     },
     (fail)=>{console.log(fail);})
@@ -36,6 +38,7 @@ class PlanListing extends React.Component{
     return(
       <div>
         {plans}
+        
       </div>
     )
   }

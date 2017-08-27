@@ -3,6 +3,7 @@ import React from 'react';
 class ResponsiveSvg extends React.Component{
 
   mouseHandlerFactory = (func)=>{
+
     return (e)=>{
       if(func){
         var loc = cursorPoint(this.svg,e);

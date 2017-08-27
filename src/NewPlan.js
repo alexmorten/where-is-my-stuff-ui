@@ -1,9 +1,34 @@
 import React from 'react';
-import ResponsiveSvg from './SvgComponents/ResponsiveSvg';
-import Line from './SvgComponents/Line';
 import './css/Plan.css'
-import Plan from './Plan';
+import PencilMode from './plan-modes/PencilMode';
+import RectMode from './plan-modes/RectMode';
+import DeleteMode from './plan-modes/DeleteMode';
 import Store from './services/Store';
+import ModeSelectionBar from './ModeSelectionBar';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+class ModeSelector extends React.Component{
+  getComponentForMode(){
+    var mode = this.props.mode;
+    if(mode==="pencil"){
+      return <PencilMode {...this.props}/>
+    }
+    if(mode==="rect"){
+      return <RectMode {...this.props}/>
+    }
+    if(mode==="delete"){
+      return <DeleteMode {...this.props}/>
+    }
+  }
+  render(){
+
+    return(
+      <div>
+        {this.getComponentForMode()}
+      </div>
+    )
+  }
+}
 
 
 class NewPlan extends React.Component{
@@ -11,35 +36,13 @@ class NewPlan extends React.Component{
     lines:[],
     tempPoint:null,
     mousePoint:null,
-    mousePressed:false,
+    editingMode:"pencil", // ["pencil","rect","delete"]
     name:""
   }
   width = 1000;
   height = 1000;
   gridSize = 20;
-  mouseDown = (loc)=>{
-    var roundedLoc = roundPointToGridSize(loc,this.gridSize);
-    this.setState({ tempPoint:{x:roundedLoc.x,y:roundedLoc.y } })
-  }
-  mouseUp = (loc)=>{
-    if(this.state.tempPoint){
-      var roundedLoc = roundPointToGridSize(loc,this.gridSize);
-      if (!isSamePoint(roundedLoc,this.state.tempPoint)) {
-        this.setState({tempPoint:null,lines:this.state.lines.concat([{p1:this.state.tempPoint,p2:roundedLoc}])});
-      }else{
-        this.setState({tempPoint:null});
-      }
-    }
 
-  }
-  mouseMove = (loc)=>{
-
-    var roundedLoc = roundPointToGridSize(loc,this.gridSize);
-      this.setState({mousePoint:{x:roundedLoc.x,y:roundedLoc.y}});
-  }
-  mouseLeave = (loc)=>{
-    this.setState({tempPoint:null});
-  }
   onNameChange = (e)=>{
     e.preventDefault();
     this.setState({name:e.target.value});
@@ -60,45 +63,37 @@ class NewPlan extends React.Component{
         lines:[],
         name:""
       })
+      if(this.props.refresh){
+        this.props.refresh();
+      }
     })
 
   }
  render(){
+   var actionBar=  <ModeSelectionBar onChange={(newMode)=>{this.setState({editingMode:newMode})}} mode={this.state.editingMode}/>
 
-  var mouseLine;
-   if(this.state.tempPoint){
-     mouseLine = <Line p1={this.state.tempPoint} p2={this.state.mousePoint} key={"mouse"} className="mouse-line"/>;
-   }
    return (
     <div className="new-plan">
-      <input type="text" placeholder="name" className="input new-plan-name" value={this.state.name} onChange={this.onNameChange}/>
-      <Plan representation={{lines:this.state.lines}}
-        onMouseDown={this.mouseDown}
-        onMouseUp={this.mouseUp}
-        onMove={this.mouseMove}
-        onMouseLeave={this.mouseLeave}
-        width={this.width} height={this.height} gridSize={this.gridSize}
-        >
-          {mouseLine}
-        </Plan>
-        <button onClick={this.onSubmit}>Save!</button>
+
+      <TextField
+        hintText="Name"
+        fullWidth={false}
+        value={this.state.name}
+        onChange={this.onNameChange}
+        />
+        <ModeSelector
+          width={this.width}
+          height={this.height}
+          gridSize={this.gridSize}
+          representation={{lines:this.state.lines}}
+          changeState={this.setState.bind(this)}
+          mode={this.state.editingMode}
+          actionBar={actionBar}
+        />
+        
+        <RaisedButton label="Save!" primary={true} onClick={this.onSubmit}/>
       </div>
     )
  }
 }
 export default NewPlan;
-
-
-function roundToGridSize(num,gridSize){
-  return Math.round(num/gridSize)*gridSize;
-}
-function roundPointToGridSize(point,gridSize){
-  var newPoint = {
-    x:roundToGridSize(point.x,gridSize),
-    y:roundToGridSize(point.y,gridSize)
-  };
-  return newPoint;
-}
-function isSamePoint(p1,p2){
-  return (p1.x === p2.x && p1.y === p2.y);
-}
