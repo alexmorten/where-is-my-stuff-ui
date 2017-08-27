@@ -25,6 +25,7 @@ class Plan extends React.Component{
     })
     return (
       <div className="plan-container">
+        {this.props.actionBar}
         <ResponsiveSvg className="plan-svg" {...this.props}>
           {gridlines}
           {lineItems}

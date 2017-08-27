@@ -38,7 +38,7 @@ class PlanListing extends React.Component{
     return(
       <div>
         {plans}
-        <NewPlan refresh={this.getPlans}/>
+        
       </div>
     )
   }

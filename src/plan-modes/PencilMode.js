@@ -46,7 +46,8 @@ class PencilMode extends React.Component{ //Basis for future Modes, edit careful
         onMouseUp={this.mouseUp}
         onMove={this.mouseMove}
         onMouseLeave={this.mouseLeave}
-        width={this.width} height={this.height} gridSize={this.gridSize}
+        width={this.props.width} height={this.props.height} gridSize={this.props.gridSize}
+        actionBar={this.props.actionBar}
         >
           {this.buildChildren()}
         </Plan>

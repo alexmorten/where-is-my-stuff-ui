@@ -1,22 +1,30 @@
 import React from 'react';
 import PencilMode from './PencilMode';
-import Line from '../SvgComponents/Line';
+import Circle from '../SvgComponents/Circle';
 class DeleteMode extends PencilMode{
 
   mouseUp = (loc)=>{
-    var lines = this.props.representation.lines;
-    if(this.state.tempPoint){
+    var lines = this.getLines();
+    if(lines.length > 0){
       var roundedLoc = this.roundPointToGridSize(loc,this.props.gridSize);
-      if (!this.isSamePoint(roundedLoc,this.state.tempPoint)) {
-        this.setState({tempPoint:null});
-        this.props.changeState({lines:lines.concat(getLinesForRect({p1:this.state.tempPoint,p2:roundedLoc}))})
-      }else{
-        this.setState({tempPoint:null});
+
+      var deleteIndex = getClosestLineIndex(lines,roundedLoc);
+      if(deleteIndex >=0){
+        lines.splice(deleteIndex,1);
+        this.props.changeState({lines:lines})
       }
     }
+
   }
   buildChildren = ()=>{
-  return null;
+    var lines = this.getLines();
+    var circles = lines.map((line)=>{
+      var middle = getLineMiddle(line);
+
+      return <Circle point={middle} radius={5} style={line.color ? {fill:line.color}: {}}/>;
+    });
+
+  return circles;
   }
   getLines = ()=>{
 
@@ -27,7 +35,9 @@ class DeleteMode extends PencilMode{
     var cursor = this.state.mousePoint;
     if(cursor && copiedLines.length > 0){
       var index = getClosestLineIndex(copiedLines,cursor);
-      copiedLines[index].color = "red";
+      if(index >=0){
+        copiedLines[index].color = "red";
+      }
 
     }
 

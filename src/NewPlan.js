@@ -1,18 +1,30 @@
 import React from 'react';
-import ResponsiveSvg from './SvgComponents/ResponsiveSvg';
-import Line from './SvgComponents/Line';
 import './css/Plan.css'
 import PencilMode from './plan-modes/PencilMode';
 import RectMode from './plan-modes/RectMode';
+import DeleteMode from './plan-modes/DeleteMode';
 import Store from './services/Store';
-
+import ModeSelectionBar from './ModeSelectionBar';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 class ModeSelector extends React.Component{
+  getComponentForMode(){
+    var mode = this.props.mode;
+    if(mode==="pencil"){
+      return <PencilMode {...this.props}/>
+    }
+    if(mode==="rect"){
+      return <RectMode {...this.props}/>
+    }
+    if(mode==="delete"){
+      return <DeleteMode {...this.props}/>
+    }
+  }
   render(){
 
     return(
       <div>
-        <h4>{this.props.mode}</h4>
-        <RectMode {...this.props}/>
+        {this.getComponentForMode()}
       </div>
     )
   }
@@ -24,7 +36,7 @@ class NewPlan extends React.Component{
     lines:[],
     tempPoint:null,
     mousePoint:null,
-
+    editingMode:"pencil", // ["pencil","rect","delete"]
     name:""
   }
   width = 1000;
@@ -58,20 +70,28 @@ class NewPlan extends React.Component{
 
   }
  render(){
-
+   var actionBar=  <ModeSelectionBar onChange={(newMode)=>{this.setState({editingMode:newMode})}} mode={this.state.editingMode}/>
 
    return (
     <div className="new-plan">
-      <input type="text" placeholder="name" className="input new-plan-name" value={this.state.name} onChange={this.onNameChange}/>
 
+      <TextField
+        hintText="Name"
+        fullWidth={false}
+        value={this.state.name}
+        onChange={this.onNameChange}
+        />
         <ModeSelector
           width={this.width}
           height={this.height}
           gridSize={this.gridSize}
           representation={{lines:this.state.lines}}
           changeState={this.setState.bind(this)}
+          mode={this.state.editingMode}
+          actionBar={actionBar}
         />
-        <button onClick={this.onSubmit}>Save!</button>
+        
+        <RaisedButton label="Save!" primary={true} onClick={this.onSubmit}/>
       </div>
     )
  }
