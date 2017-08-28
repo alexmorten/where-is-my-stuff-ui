@@ -107,7 +107,7 @@ class Registrate extends Component{
         <br/>
         {passwordConfirmationErrors}
         <br/>
-        <FlatButton onClick={this.registrate} disabled={this.buttonShouldBeDisabled()}>Account erstellen</FlatButton>
+        <FlatButton onClick={this.registrate} disabled={this.buttonShouldBeDisabled()}>Create Account!</FlatButton>
         {loadingIndicator}
 
       </form>

@@ -1,0 +1,10 @@
+.plan-listing{
+display: flex;
+flex-wrap: wrap;
+}
+.single-plan{
+  max-width: 440px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  width: 100%;
+}

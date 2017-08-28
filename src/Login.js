@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import queryString from 'query-string';
 import StorageAdaptor from './services/StorageAdaptor';
 import './css/Login.css';
-
+import Paper from 'material-ui/Paper';
 class Login extends Component{
   state={
     loading:false,
@@ -104,18 +104,24 @@ class Login extends Component{
       });
     }
 
-    return(<form className="login-form" style={style.container} >
-      <TextField  floatingLabelText="Email" type="email" value={this.state.email} onChange={this.onEmailChange}/>
-      <br/>
-      <TextField floatingLabelText="Password" type="password" value={this.state.password} onChange={this.onPasswordChange}/>
-      <br/>
-      <FlatButton label="Login" disabled={this.shouldButtonBeDisabled()} onClick={this.handleSubmit}/>
-      <br/>
-      {errors}
-      <br/>
-      <span className="register-message"> <Link to="/register">You dont have an account yet?</Link> </span>
-      {loadingIndicator}
-    </form>);
+    return(
+      <Paper className="login-form-container">
+        <form className="login-form" style={style.container} >
+          <h2 className="nice-heading">Login</h2>
+          <TextField  floatingLabelText="Email" type="email" value={this.state.email} onChange={this.onEmailChange}/>
+          <br/>
+          <TextField floatingLabelText="Password" type="password" value={this.state.password} onChange={this.onPasswordChange}/>
+          <br/>
+          <FlatButton label="Login" disabled={this.shouldButtonBeDisabled()} onClick={this.handleSubmit}/>
+          <br/>
+          {errors}
+          <br/>
+          <span className="register-message"> <Link to="/register">You dont have an account yet?</Link> </span>
+          {loadingIndicator}
+
+        </form>
+      </Paper>
+    );
   }
 }
 export default Login;

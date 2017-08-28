@@ -1,0 +1,26 @@
+.item-description{
+  white-space: pre-wrap;
+}
+.item{
+  margin: 10px;
+  padding: 1px;
+  transition: all 500ms;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.item-selected{
+  background-color: #131296;
+}
+.item-selected *{
+  color: white;
+  font-weight: 800;
+}
+.item-bar{
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  flex-grow: 1;
+  max-height: 800px;
+  overflow-y: scroll;
+}

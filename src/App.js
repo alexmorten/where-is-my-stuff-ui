@@ -13,25 +13,27 @@ class App extends Component {
 
   render() {
     var loginLink=(
-        <NavLink activeClassName="link-active" to="/login">Login</NavLink>
+        <NavLink className="link" activeClassName="link-active login" to="/login">Login</NavLink>
     );
     if(Store.isAuthenticated()){
       loginLink=(
-      <a onClick={this.handleLogout}>Logout</a>
+      <a className="link" onClick={this.handleLogout}>Logout</a>
       )
     }
     return (
       <MuiThemeProvider>
         <div className="App">
           <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <div>
+          
+            <div className="navbar">
+              <img src={logo} className="App-logo" alt="logo" />
               <span>
-                <NavLink exact={true} activeClassName="link-active" to="/">Plans</NavLink>
-                <NavLink exact={true} activeClassName="link-active" to="/new-plan">NewPlan</NavLink>
+                <NavLink exact={true} className="link" activeClassName="link-active" to="/">Plans</NavLink>
+                <NavLink exact={true} className="link" activeClassName="link-active" to="/new-plan">NewPlan</NavLink>
               </span>
-              <span>{loginLink}</span>
+
             </div>
+            <div className="login-container"> {loginLink}</div>
           </div>
           <div className="App-body">
             {this.props.children}

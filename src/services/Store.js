@@ -243,11 +243,11 @@ function updateCurrentUserDetails(){
 
 }
 function isAuthenticated(){
-  return true;//remove when adding authentication
+
   return StorageAdaptor.getItem("authenticated") === "true";
 }
 function constructHeadersForRequest(headers1){
-  return headers1 //remove when adding authentication
+  
   var authentication_headers=StorageAdaptor.getObject("auth_details");
   var headers = Object.assign(headers1,authentication_headers);
 

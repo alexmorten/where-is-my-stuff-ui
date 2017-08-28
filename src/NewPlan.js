@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/Plan.css'
+import './css/NewPlan.css'
 import PencilMode from './plan-modes/PencilMode';
 import RectMode from './plan-modes/RectMode';
 import DeleteMode from './plan-modes/DeleteMode';
@@ -7,6 +7,8 @@ import Store from './services/Store';
 import ModeSelectionBar from './ModeSelectionBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import AuthComponent from './helperComponents/AuthComponent';
+import Paper from 'material-ui/Paper';
 class ModeSelector extends React.Component{
   getComponentForMode(){
     var mode = this.props.mode;
@@ -31,7 +33,7 @@ class ModeSelector extends React.Component{
 }
 
 
-class NewPlan extends React.Component{
+class NewPlan extends AuthComponent{
   state={
     lines:[],
     tempPoint:null,
@@ -63,9 +65,8 @@ class NewPlan extends React.Component{
         lines:[],
         name:""
       })
-      if(this.props.refresh){
-        this.props.refresh();
-      }
+      this.props.history.push("/");
+      this.props.history.goForward();
     })
 
   }
@@ -73,10 +74,10 @@ class NewPlan extends React.Component{
    var actionBar=  <ModeSelectionBar onChange={(newMode)=>{this.setState({editingMode:newMode})}} mode={this.state.editingMode}/>
 
    return (
-    <div className="new-plan">
-
+    <Paper className="new-plan">
+      <h1 className="nice-heading">Create a new Plan</h1>
       <TextField
-        hintText="Name"
+        floatingLabelText="Name"
         fullWidth={false}
         value={this.state.name}
         onChange={this.onNameChange}
@@ -90,9 +91,9 @@ class NewPlan extends React.Component{
           mode={this.state.editingMode}
           actionBar={actionBar}
         />
-        
+
         <RaisedButton label="Save!" primary={true} onClick={this.onSubmit}/>
-      </div>
+      </Paper>
     )
  }
 }

@@ -1,28 +1,37 @@
 import React from 'react';
 import Plan from './Plan';
-import Store from './services/Store';
-import './css/SinglePlan.css';
+import Paper from 'material-ui/Paper';
+import './css/PlanListing.css';
 import NewPlan from './NewPlan';
-
+import AuthComponent from './helperComponents/AuthComponent';
+import {Link} from 'react-router-dom';
 class SinglePlan extends React.Component{
   render(){
+    var plan = this.props.plan;
     return (
-    <div className="single-plan">
-      <h4>{this.props.plan.name}</h4>
-      <Plan representation={this.props.plan.representation}/>
-    </div>)
+
+        <Paper className="single-plan">
+          <Link to={`/plans/${plan.id}`}>
+            <h2 className="nice-heading">{plan.name}</h2>
+
+            <Plan representation={plan.representation}/>
+            <span className="subtitle">{plan.item_amount} items</span>
+            </Link>
+        </Paper>
+
+  )
   }
 }
 
 
 
 
-class PlanListing extends React.Component{
+class PlanListing extends AuthComponent{
   state={
     plans:[]
   }
   getPlans = ()=>{
-    Store.receive("plans",(plans)=>{
+    this.find("plans",(plans)=>{
 
         this.setState({plans:plans});
     },
@@ -36,9 +45,9 @@ class PlanListing extends React.Component{
       return <SinglePlan plan={plan} key={plan.id} />
     });
     return(
-      <div>
+      <div className="plan-listing">
         {plans}
-        
+
       </div>
     )
   }
