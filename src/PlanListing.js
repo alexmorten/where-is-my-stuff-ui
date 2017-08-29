@@ -2,7 +2,6 @@ import React from 'react';
 import Plan from './Plan';
 import Paper from 'material-ui/Paper';
 import './css/PlanListing.css';
-import NewPlan from './NewPlan';
 import AuthComponent from './helperComponents/AuthComponent';
 import {Link} from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';

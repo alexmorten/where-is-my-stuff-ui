@@ -1,5 +1,4 @@
 import React from 'react';
-import FontIcon from 'material-ui/FontIcon';
 import Icon from './helperComponents/Icon';
 import './css/ModeSelectionBar.css';
 class ModeSelectionBar extends React.Component{

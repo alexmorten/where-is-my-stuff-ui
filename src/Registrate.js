@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import Store from './services/Store';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import './css/Registrate.css';
-
+import Paper from 'material-ui/Paper';
 class Registrate extends Component{
   state={
     loading:false,
@@ -94,23 +94,25 @@ class Registrate extends Component{
     }
 
     return(
-      <form className="register-form" style={style.container} >
-        <h4>Create Account</h4>
+      <Paper className="register-form-container">
+        <form className="register-form" style={style.container} >
+          <h4>Create Account</h4>
 
-        <TextField  floatingLabelText="Email" name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
+          <TextField  floatingLabelText="Email" name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
 
-        {emailErrors}
-     <TextField  floatingLabelText="Password" name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
-        <br/>
-        {passwordErrors}
-       <TextField  floatingLabelText="Password confirmation" name="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.handleChange}/>
-        <br/>
-        {passwordConfirmationErrors}
-        <br/>
-        <FlatButton onClick={this.registrate} disabled={this.buttonShouldBeDisabled()}>Create Account!</FlatButton>
-        {loadingIndicator}
+          {emailErrors}
+       <TextField  floatingLabelText="Password" name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
+          <br/>
+          {passwordErrors}
+         <TextField  floatingLabelText="Password confirmation" name="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.handleChange}/>
+          <br/>
+          {passwordConfirmationErrors}
+          <br/>
+          <RaisedButton onClick={this.registrate} disabled={this.buttonShouldBeDisabled()} primary={true} label="Create Account!"/>
+          {loadingIndicator}
 
-      </form>
+        </form>
+      </Paper>
     );
   }
 }

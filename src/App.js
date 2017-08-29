@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './css/App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {NavLink} from 'react-router-dom';
-import PlanListing from './PlanListing';
 import Store from './services/Store';
 class App extends Component {
   handleLogout = ()=>{

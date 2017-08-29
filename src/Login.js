@@ -1,7 +1,7 @@
 import React , {Component} from 'react';
 import Store from './services/Store';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import {Link} from 'react-router-dom';
 import queryString from 'query-string';
@@ -112,7 +112,7 @@ class Login extends Component{
           <br/>
           <TextField floatingLabelText="Password" type="password" value={this.state.password} onChange={this.onPasswordChange}/>
           <br/>
-          <FlatButton label="Login" disabled={this.shouldButtonBeDisabled()} onClick={this.handleSubmit}/>
+          <RaisedButton label="Login" disabled={this.shouldButtonBeDisabled()} onClick={this.handleSubmit} primary/>
           <br/>
           {errors}
           <br/>

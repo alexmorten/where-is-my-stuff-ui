@@ -41,8 +41,8 @@ class DetailedPlan extends AuthComponent{
         indexesToRemove.push(i);
       }
     }
-    for (var i = 0; i < indexesToRemove.length; i++) {
-      selectedItemsCopy.splice(indexesToRemove[i],1);
+    for (var j = 0; j < indexesToRemove.length; j++) {
+      selectedItemsCopy.splice(indexesToRemove[j],1);
     }
     this.setState({items:items,selectedItems:selectedItemsCopy});
   }

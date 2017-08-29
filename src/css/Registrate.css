@@ -1,9 +1,14 @@
 .register-form{
   max-width: 300px;
   margin: 40px auto;
-  text-align: left;
+
 }
 .error-small{
   color: red;
   font-size: 11px;
+}
+.register-form-container{
+  max-width: 400px;
+  padding: 20px;
+  margin: 40px auto;
 }

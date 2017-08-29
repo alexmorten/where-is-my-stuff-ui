@@ -69,7 +69,7 @@ render(){
         onDelete={this.handleDeleteItem}/>)
   });
   var noItemMessage;
-  if(items.length == 0){
+  if(items.length === 0){
     noItemMessage = (
       <div>
       <Divider/>

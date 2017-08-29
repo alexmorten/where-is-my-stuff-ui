@@ -1,7 +1,6 @@
 import React from 'react';
 import PencilMode from './PencilMode';
-import Line from '../SvgComponents/Line';
-import RaisedButton from 'material-ui/RaisedButton';
+
 class LabelForm extends React.Component{
   componentDidMount(){
     this.input.focus(); //TODO: make this work somehow

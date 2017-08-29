@@ -1,7 +1,7 @@
-import React,{Component} from 'react';
+import React from 'react';
 import Store from '../services/Store';
 
-class AuthComponent extends Component{
+class AuthComponent extends React.Component{
   transitionToLogin(){
 
     this.props.history.push("/login");

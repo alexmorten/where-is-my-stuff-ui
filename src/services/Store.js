@@ -1,6 +1,6 @@
 import StorageAdaptor from './StorageAdaptor';
 
-var API_URL = "https://where-is-my-stuff-api.herokuapp.com/";
+var API_URL = "https://wims-api.herokuapp.com/";
 if(process.env.NODE_ENV === "development"){
    API_URL = "http://localhost:3000/";
 
@@ -247,7 +247,7 @@ function isAuthenticated(){
   return StorageAdaptor.getItem("authenticated") === "true";
 }
 function constructHeadersForRequest(headers1){
-  
+
   var authentication_headers=StorageAdaptor.getObject("auth_details");
   var headers = Object.assign(headers1,authentication_headers);
 

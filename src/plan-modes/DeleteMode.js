@@ -54,7 +54,7 @@ class DeleteMode extends PencilMode{
   }
 
   getRepresentaion = ()=>{
-  
+
     var originalLines = this.props.representation.lines || [];
     var originalLabels = this.props.representation.labels || [];
     var copiedLines = originalLines.slice().map((line)=>{
@@ -109,7 +109,7 @@ function getLineMiddle(line){
   return middle;
 }
 function getClosestLineIndexAndDist(lines,cursor){
-  if(lines.length == 0){
+  if(lines.length === 0){
     return {index:-1,dist:undefined};
   }
   var firstLine = lines[0];
@@ -128,7 +128,7 @@ function getClosestLineIndexAndDist(lines,cursor){
 
 }
 function getClosetstLabelIndexAndDist(labels,cursor){
-  if(labels.length == 0){
+  if(labels.length === 0){
     return {index:-1,dist:undefined};
   }
   var firstLabel = labels[0];
