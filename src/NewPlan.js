@@ -2,6 +2,7 @@ import React from 'react';
 import './css/NewPlan.css'
 import PencilMode from './plan-modes/PencilMode';
 import RectMode from './plan-modes/RectMode';
+import LabelMode from './plan-modes/LabelMode';
 import DeleteMode from './plan-modes/DeleteMode';
 import Store from './services/Store';
 import ModeSelectionBar from './ModeSelectionBar';
@@ -21,6 +22,9 @@ class ModeSelector extends React.Component{
     if(mode==="rect"){
       return <RectMode {...this.props}/>
     }
+    if(mode==="label"){
+      return <LabelMode {...this.props}/>
+    }
     if(mode==="delete"){
       return <DeleteMode {...this.props}/>
     }
@@ -39,6 +43,7 @@ class ModeSelector extends React.Component{
 class NewPlan extends AuthComponent{
   state={
     lines:[],
+    labels:[],
     tempPoint:null,
     mousePoint:null,
     editingMode:"pencil", // ["pencil","rect","delete"]
@@ -55,15 +60,17 @@ class NewPlan extends AuthComponent{
   onSubmit = (e)=>{
     e.preventDefault();
     var lines=this.state.lines;
+    var labels=this.state.labels;
     var name=this.state.name;
     var plan = {
       name:name,
       representation:{
-        lines:lines
+        lines:lines,
+        labels:labels
       }
     };
     Store.send("plans",plan,(data)=>{
-      console.log(data);
+
       this.setState({
         lines:[],
         name:""
@@ -78,7 +85,7 @@ class NewPlan extends AuthComponent{
   }
  render(){
    var actionBar=  <ModeSelectionBar onChange={(newMode)=>{this.setState({editingMode:newMode})}} mode={this.state.editingMode}/>
-
+  
    return (
      <div>
       <Subheader>
@@ -97,7 +104,7 @@ class NewPlan extends AuthComponent{
             width={this.width}
             height={this.height}
             gridSize={this.gridSize}
-            representation={{lines:this.state.lines}}
+            representation={{lines:this.state.lines,labels:this.state.labels}}
             changeState={this.setState.bind(this)}
             mode={this.state.editingMode}
             actionBar={actionBar}

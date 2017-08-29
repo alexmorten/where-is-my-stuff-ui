@@ -39,9 +39,12 @@ class PencilMode extends React.Component{ //Basis for future Modes, edit careful
      return mouseLine
   }
   render(){
-
+    var representation = this.props.representation;
+    if(this.getRepresentaion){
+      representation=this.getRepresentaion();
+    }
     return(
-      <Plan representation={{lines:(this.getLines ? this.getLines() : this.props.representation.lines)}}
+      <Plan representation={representation}
         onMouseDown={this.mouseDown}
         onMouseUp={this.mouseUp}
         onMove={this.mouseMove}

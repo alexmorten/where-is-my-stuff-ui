@@ -19,10 +19,15 @@ class Plan extends React.Component{
       gridlines.push(<Line p1={{x:0,y:y}} p2={{x:width,y:y}} key={`y:${y}`} className="gridline"/>)
     }
     const lines = this.props.representation.lines || [];
+    const labels = this.props.representation.labels || [];
 
     const lineItems = lines.map((line,index)=>{
       return <Line p1={line.p1} p2={line.p2} key={index} style={line.color ? {stroke:line.color}: {}}/>
     })
+    const labelItems = labels.map((label)=>{
+      return  <text x={label.origin.x} y={label.origin.y} fill={label.color || "white"}>{label.text}</text>
+    });
+
     return (
       <div className="plan-container">
         {this.props.actionBar}
@@ -30,6 +35,7 @@ class Plan extends React.Component{
           {gridlines}
           {lineItems}
           {this.props.children}
+          {labelItems}
         </ResponsiveSvg>
       </div>
     )

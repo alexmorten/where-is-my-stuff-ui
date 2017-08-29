@@ -15,6 +15,7 @@ class ModeSelectionBar extends React.Component{
       <div className="mode-selection-bar">
         <Icon name="pencil" onClick={this.onIconClick} icon="edit" className={mode === "pencil" ? "active": ""}/>
         <Icon name="rect" onClick={this.onIconClick} icon="crop_square" className={mode === "rect" ? "active": ""}/>
+        <Icon name="label" onClick={this.onIconClick} icon="title" className={mode === "label" ? "active": ""}/>
         <Icon name="delete" onClick={this.onIconClick} icon="delete" className={mode === "delete" ? "active": ""}/>
       </div>
     )
