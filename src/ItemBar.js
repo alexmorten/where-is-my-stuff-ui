@@ -5,7 +5,7 @@ import LimitedText from './helperComponents/LimitedText';
 import Divider from 'material-ui/Divider';
 import './css/ItemBar.css';
 import TextField from 'material-ui/TextField';
-
+import BasicDeleteDialogButton from './helperComponents/BasicDeleteDialogButton';
 class Item extends React.Component{
   onClick=()=>{
     if(this.props.onClick){
@@ -18,8 +18,8 @@ render(){
   <div>
         <Divider/>
   <div className={`item ${className}`} onClick={this.onClick} {...rest}>
-
-    <h4 className="nice-heading">{item.name}</h4>
+    <BasicDeleteDialogButton title="Delete Item" itemTitle={item.name} delete={()=>{this.props.onDelete(item)}} iconClassName="top-right" rootClassName="item-delete"/>
+    <h3 className="nice-heading">{item.name}</h3>
     <p> <LimitedText text={item.description} className="item-description"/></p>
   </div>
   </div>
@@ -48,9 +48,25 @@ class ItemBar extends AuthComponent {
   componentDidMount(){
     this.getItems();
   }
+  handleDeleteItem=(item)=>{
+    if(item){
+      this.delete(`items/${item.id}`,()=>{
+        this.getItems();
+      },(fail)=>{
+        console.log(fail);
+        this.getItems();
+      })
+    }
+  }
 render(){
   var items = this.props.items.map((item)=>{
-    return <Item item={item} key={item.id} onClick={this.props.onItemClick} className={isSelected(this.props.selectedItems,item) ? "item-selected" : ""}/>
+    return (
+      <Item
+        item={item}
+        key={item.id}
+        onClick={this.props.onItemClick}
+        className={isSelected(this.props.selectedItems,item) ? "item-selected" : ""}
+        onDelete={this.handleDeleteItem}/>)
   });
   var noItemMessage;
   if(items.length == 0){
@@ -64,7 +80,8 @@ render(){
   return (
     <Paper className="item-bar">
       <div className="seach-section">
-        <TextField value={this.state.query} onChange={this.onQueryChange} hintText="Search"/>
+        <TextField value={this.state.query} onChange={this.onQueryChange} hintText="Search" fullWidth={true}/>
+        <Divider/>
       </div>
       <div className="item-bar-body">
         {items}

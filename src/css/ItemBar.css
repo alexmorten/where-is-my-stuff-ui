@@ -1,12 +1,14 @@
 .item-description{
   white-space: pre-wrap;
+
 }
 .item{
-  margin: 10px;
+  margin: 5px;
   padding: 1px;
   transition: all 500ms;
   cursor: pointer;
   border-radius: 3px;
+  position: relative;
 }
 .item-selected{
   background-color: #131296;
@@ -21,6 +23,12 @@
   margin: 10px auto;
   padding: 10px;
   flex-grow: 1;
+
+}
+.item-bar-body{
   max-height: 800px;
   overflow-y: scroll;
+}
+.item-selected .item-delete{
+  color: white !important;
 }

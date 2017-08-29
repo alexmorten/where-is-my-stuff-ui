@@ -24,13 +24,10 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <div className="App-header">
-          
+
             <div className="navbar">
               <img src={logo} className="App-logo" alt="logo" />
-              <span>
-                <NavLink exact={true} className="link" activeClassName="link-active" to="/">Plans</NavLink>
-                <NavLink exact={true} className="link" activeClassName="link-active" to="/new-plan">NewPlan</NavLink>
-              </span>
+              <span className="nice-heading white">Where is my stuff?</span>
 
             </div>
             <div className="login-container"> {loginLink}</div>

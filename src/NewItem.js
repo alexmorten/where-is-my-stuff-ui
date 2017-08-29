@@ -6,6 +6,9 @@ import './css/NewItem.css'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Circle from './SvgComponents/Circle';
+import Subheader from './helperComponents/Subheader';
+import BackIcon from './helperComponents/BackIcon';
+
 class NewItem extends AuthComponent{
   state={
     plan:null,
@@ -71,25 +74,34 @@ class NewItem extends AuthComponent{
       if(x && y){
         locCircle = <Circle point={{x:x,y:y}} radius={10}/>
       }
-      plan = <Plan
+      plan = (<div>
+        <h4 className="nice-heading">{`Where did you put it in "${this.state.plan.name}"?`}</h4>
+        <Plan
         representation={this.state.plan.representation}
         onMouseDown={this.handleMouse}
-
         onMouseUp={this.handleMouse}>
         {locCircle}
         </Plan>
+      </div>)
     }
     return (
-      <Paper className="new-item">
-        <h1 className="nice-heading">Create a new Item</h1>
-        <TextField name="name" value={this.state.name} floatingLabelText="Item Name" onChange={this.onChange}/>
-        <br/>
-        <TextField name="description" value={this.state.description} floatingLabelText="Item description" onChange={this.onChange} multiLine={true} style={{textAlign:"left"}}/>
-        <br/>
-        <h4 className="nice-heading">Where did you put it?</h4>
-        {plan}
-        <RaisedButton primary={true} label="Save" disabled={this.shouldButtonBeDisabled()} onClick={this.onSubmit}/>
-      </Paper>
+      <div>
+        <Subheader>
+          <BackIcon rootStyle={{float:"left"}}/>
+          <RaisedButton primary={true} label="Save" disabled={this.shouldButtonBeDisabled()} onClick={this.onSubmit} style={{float:"right"}}/>
+        </Subheader>
+        <Paper className="new-item">
+          <h1 className="nice-heading">Create a new Item</h1>
+          <TextField name="name" value={this.state.name} floatingLabelText="Item Name" onChange={this.onChange}/>
+          <br/>
+          <TextField name="description" value={this.state.description} floatingLabelText="Item description (optional)" onChange={this.onChange} multiLine={true} style={{textAlign:"left"}}/>
+          <br/>
+
+          {plan}
+          <RaisedButton primary={true} label="Save" disabled={this.shouldButtonBeDisabled()} onClick={this.onSubmit}/>
+        </Paper>
+      </div>
+
     )
   }
 }

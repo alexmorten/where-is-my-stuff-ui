@@ -5,6 +5,8 @@ import './css/PlanListing.css';
 import NewPlan from './NewPlan';
 import AuthComponent from './helperComponents/AuthComponent';
 import {Link} from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
+import Subheader from './helperComponents/Subheader';
 class SinglePlan extends React.Component{
   render(){
     var plan = this.props.plan;
@@ -45,9 +47,17 @@ class PlanListing extends AuthComponent{
       return <SinglePlan plan={plan} key={plan.id} />
     });
     return(
-      <div className="plan-listing">
-        {plans}
+      <div>
+        <Subheader>
+          <Link to="/new-plan" >
+            <RaisedButton label="Add a Plan" primary={true} style={{float:"right"}}/>
+          </Link>
+        </Subheader>
+        <div className="plan-listing">
 
+          {plans}
+
+        </div>
       </div>
     )
   }

@@ -24,7 +24,9 @@ body{
   top: 0;
   left: 0;
   right:0;
-  z-index: 100;
+  z-index: 80;
+  box-shadow:1px 1px 10px black;
+  height: 45px;
 }
 .navbar{
   text-align: left;
@@ -49,7 +51,7 @@ a{
 
 }
 .App-body{
-  margin-top: 80px;
+  margin-top: 120px;
   padding-bottom: 100px;
 }
 .nice-heading{
@@ -59,4 +61,23 @@ a{
 .subtitle{
   font-weight: 200;
   color:rgba(0,0,0,.7);
+}
+.interactable{
+  cursor: pointer
+}
+.marginless{
+  margin: 0;
+}
+.top-right{
+  position: absolute;
+  top:0;
+  right:0;
+}
+.top-left{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.white{
+  color: white;
 }

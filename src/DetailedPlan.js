@@ -8,6 +8,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router-dom';
 import Circle from './SvgComponents/Circle';
 import ItemBar from './ItemBar';
+import BasicDeleteDialogButton from './helperComponents/BasicDeleteDialogButton';
+import Subheader from './helperComponents/Subheader';
+import BackIcon from './helperComponents/BackIcon';
+
 class DetailedPlan extends AuthComponent{
   state={
     plan:null,
@@ -53,38 +57,60 @@ class DetailedPlan extends AuthComponent{
       this.setState({selectedItems:selectedItems.concat([item])})
     }
   }
-
+  handleDelete=()=>{
+    var plan = this.state.plan;
+    this.delete(`plans/${plan.id}`,()=>{
+      this.props.history.push("/");
+      this.props.history.goForward();
+    },(fail)=>{console.log(fail);})
+  }
   render(){
     if (this.state.loading) {
       return <Loading />
     }
     var plan = this.state.plan;
     var selectedCirlces = this.state.items.filter((item)=>isItemInItemArr(item,this.state.selectedItems)).map((item)=>{
-      return <Circle point={{x:item.representation.x,y:item.representation.y}} radius={10} style={{stroke:'black',strokeWidth:2} }/>
+      return <Circle
+        point={{x:item.representation.x,y:item.representation.y}}
+        radius={12}
+        style={{stroke:'black',strokeWidth:2}}
+        onClick={()=>{this.onItemClick(item)}}
+        className="interactable"/>
     });
     var otherCircles  = this.state.items.filter((item)=>!isItemInItemArr(item,this.state.selectedItems)).map((item)=>{
 
-      return <Circle point={{x:item.representation.x,y:item.representation.y}} radius={ 5}/>
+      return <Circle
+         point={{x:item.representation.x,y:item.representation.y}}
+        radius={ 7}
+        onClick={()=>{this.onItemClick(item)}}
+        className="interactable"/>
     })
     return (
-      <div className="detailed-plan-container">
-        <ItemBar
-           onChange={this.onItemChange}
-           items={this.state.items}
-           plan={plan}
-           selectedItems={this.state.selectedItems}
-           onItemClick={this.onItemClick}
-           getItems={this.getItems}
-         />
-        <Paper className="detailed-plan">
-          <h2 className="nice-heading">{plan.name}</h2>
-          <Plan representation={plan.representation}>
-            {otherCircles}
-            {selectedCirlces}
-          </Plan>
+      <div>
+        <Subheader>
+          <BackIcon rootStyle={{float:"left"}}/>
+          <Link to={`/plans/new/${plan.id}`}>  <RaisedButton primary={true} label={`Add an Item`} style={{float:"right"}}/> </Link>
+        </Subheader>
+        <div className="detailed-plan-container">
+          <ItemBar
+             onChange={this.onItemChange}
+             items={this.state.items}
+             plan={plan}
+             selectedItems={this.state.selectedItems}
+             onItemClick={this.onItemClick}
+             getItems={this.getItems}
+           />
+          <Paper className="detailed-plan">
+            <BasicDeleteDialogButton title="Delete Plan" itemTitle={plan.name} delete={this.handleDelete} iconClassName="top-right"/>
+            <h2 className="nice-heading">{plan.name}</h2>
+            <Plan representation={plan.representation}>
+              {otherCircles}
+              {selectedCirlces}
+            </Plan>
 
-        <Link to={`/plans/new/${plan.id}`}>  <RaisedButton primary={true} label={`Add an Item to "${plan.name}"`}/> </Link>
-        </Paper>
+
+          </Paper>
+        </div>
       </div>
     )
   }
