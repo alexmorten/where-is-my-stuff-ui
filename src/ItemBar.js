@@ -6,7 +6,6 @@ import Divider from 'material-ui/Divider';
 import './css/ItemBar.css';
 import TextField from 'material-ui/TextField';
 import BasicDeleteDialogButton from './helperComponents/BasicDeleteDialogButton';
-import Icon from './helperComponents/Icon';
 import FontIcon from 'material-ui/FontIcon';
 import {Link} from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton'

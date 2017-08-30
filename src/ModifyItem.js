@@ -1,5 +1,4 @@
-import React from 'react';
-import Store from './services/Store';
+
 import NewItem from './NewItem';
 
 class ModifyItem extends NewItem{

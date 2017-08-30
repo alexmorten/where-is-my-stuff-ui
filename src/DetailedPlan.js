@@ -11,7 +11,6 @@ import ItemBar from './ItemBar';
 import BasicDeleteDialogButton from './helperComponents/BasicDeleteDialogButton';
 import Subheader from './helperComponents/Subheader';
 import BackIcon from './helperComponents/BackIcon';
-import Icon from './helperComponents/Icon';
 import FontIcon from 'material-ui/FontIcon';
 class DetailedPlan extends AuthComponent{
   state={

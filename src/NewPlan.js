@@ -4,7 +4,6 @@ import PencilMode from './plan-modes/PencilMode';
 import RectMode from './plan-modes/RectMode';
 import LabelMode from './plan-modes/LabelMode';
 import DeleteMode from './plan-modes/DeleteMode';
-import Store from './services/Store';
 import ModeSelectionBar from './ModeSelectionBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -69,7 +68,7 @@ class NewPlan extends AuthComponent{
         labels:labels
       }
     };
-    Store.send("plans",plan,(data)=>{
+    this.post("plans",plan,(data)=>{
 
       this.setState({
         lines:[],

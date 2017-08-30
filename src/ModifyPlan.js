@@ -1,6 +1,5 @@
 import React from 'react';
 import NewPlan from './NewPlan';
-import Store from './services/Store';
 import BackIcon from './helperComponents/BackIcon';
 class ModifyPlan extends NewPlan{
   onSubmit = (e)=>{
@@ -15,7 +14,7 @@ class ModifyPlan extends NewPlan{
         labels:labels
       }
     };
-    Store.update(`plans/${this.plan_id}`,plan,(data)=>{
+    this.update(`plans/${this.plan_id}`,plan,(data)=>{
 
       this.props.history.push(`plans/${this.plan_id}`);
       this.props.history.goForward();
