@@ -105,7 +105,6 @@ class DetailedPlan extends AuthComponent{
              plan={plan}
              selectedItems={this.state.selectedItems}
              onItemClick={this.onItemClick}
-             getItems={this.getItems}
            />
           <Paper className="detailed-plan">
             {modifyIcon}

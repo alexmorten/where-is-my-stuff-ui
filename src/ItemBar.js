@@ -16,7 +16,18 @@ class Item extends React.Component{
     }
   }
 render(){
-  var {item,className,onClick,...rest} = this.props;
+  var {item,className,onClick,showPlan,...rest} = this.props;
+  var planItem;
+  console.log(showPlan);
+  if(showPlan){
+    planItem = (
+      <span
+        className="nice-heading"
+        style={{position:"absolute",bottom:0,right:30}}>
+        {item.plan.name}
+      </span>
+    )
+  }
   return(
   <div>
         <Divider/>
@@ -32,6 +43,7 @@ render(){
     </Link>
     <h3 className="nice-heading">{item.name}</h3>
     <p> <LimitedText text={item.description} className="item-description"/></p>
+     {planItem}
   </div>
   </div>
   )
@@ -77,7 +89,8 @@ render(){
         key={item.id}
         onClick={this.props.onItemClick}
         className={isSelected(this.props.selectedItems,item) ? "item-selected" : ""}
-        onDelete={this.handleDeleteItem}/>)
+        onDelete={this.handleDeleteItem}
+        showPlan={this.props.showPlan}/>)
   });
   var noItemMessage;
   if(items.length === 0){
