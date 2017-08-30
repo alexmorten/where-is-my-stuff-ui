@@ -85,7 +85,7 @@ class NewItem extends AuthComponent{
     return (
       <div>
         <Subheader>
-          <BackIcon rootStyle={{float:"left"}} to={this.state.plan ? this.state.plan.name : "/"} text={this.state.plan ? `"${this.state.plan.name}"` : ""}/>
+          <BackIcon rootStyle={{float:"left"}} to={this.state.plan ? `/plans/${this.state.plan.id}` : "/"} text={this.state.plan ? `"${this.state.plan.name}"` : ""}/>
           <RaisedButton primary={true} label="Save" disabled={this.shouldButtonBeDisabled()} onClick={this.onSubmit} style={{float:"right"}}/>
         </Subheader>
         <Paper className="new-item">
