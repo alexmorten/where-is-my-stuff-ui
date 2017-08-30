@@ -17,7 +17,7 @@ class ModifyPlan extends NewPlan{
     };
     Store.update(`plans/${this.plan_id}`,plan,(data)=>{
 
-      this.props.history.push("/");
+      this.props.history.push(`plans/${this.plan_id}`);
       this.props.history.goForward();
     })
 
