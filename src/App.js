@@ -9,6 +9,8 @@ class App extends Component {
   handleLogout = ()=>{
     Store.deauthenticate();
     this.forceUpdate();
+    this.props.history.push("/login");
+    this.props.history.goForward();
     }
 
   render() {
