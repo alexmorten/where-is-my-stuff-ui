@@ -4,7 +4,7 @@
 }
 .item{
   margin: 5px;
-  padding: 1px;
+  padding: 1px 10px;
   transition: all 500ms;
   cursor: pointer;
   border-radius: 3px;
@@ -15,7 +15,6 @@
 }
 .item-selected *{
   color: white;
-  font-weight: 800;
 }
 .item-bar{
 
