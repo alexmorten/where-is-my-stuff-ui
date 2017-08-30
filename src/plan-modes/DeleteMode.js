@@ -5,8 +5,8 @@ class DeleteMode extends PencilMode{
 
 
   mouseUp = (loc)=>{
-    var originalLines = this.props.representation.lines;
-    var originalLabels = this.props.representation.labels;
+    var originalLines = this.props.representation.lines || [];
+    var originalLabels = this.props.representation.labels || [];
     var copiedLines = originalLines.slice().map((line)=>{
       return Object.assign({},line);
     });

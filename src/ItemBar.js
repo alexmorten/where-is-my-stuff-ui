@@ -6,6 +6,9 @@ import Divider from 'material-ui/Divider';
 import './css/ItemBar.css';
 import TextField from 'material-ui/TextField';
 import BasicDeleteDialogButton from './helperComponents/BasicDeleteDialogButton';
+import Icon from './helperComponents/Icon';
+import FontIcon from 'material-ui/FontIcon';
+import {Link} from 'react-router-dom';
 class Item extends React.Component{
   onClick=()=>{
     if(this.props.onClick){
@@ -18,7 +21,15 @@ render(){
   <div>
         <Divider/>
   <div className={`item ${className}`} onClick={this.onClick} {...rest}>
-    <BasicDeleteDialogButton title="Delete Item" itemTitle={item.name} delete={()=>{this.props.onDelete(item)}} iconClassName="top-right" rootClassName="item-delete"/>
+    <BasicDeleteDialogButton
+      title="Delete Item"
+      itemTitle={item.name}
+      delete={()=>{this.props.onDelete(item)}}
+      iconClassName="top-right"
+      rootClassName="item-delete"/>
+    <Link to={`/plans/${item.plan.id}/items/${item.id}/modify`} style={{position:"absolute",left:"0",top:"0"}}>
+      <FontIcon className="material-icons item-modify" >edit</FontIcon>
+    </Link>
     <h3 className="nice-heading">{item.name}</h3>
     <p> <LimitedText text={item.description} className="item-description"/></p>
   </div>
@@ -80,7 +91,10 @@ render(){
   return (
     <Paper className="item-bar">
       <div className="seach-section">
-        <TextField value={this.state.query} onChange={this.onQueryChange} hintText="Search" fullWidth={true}/>
+        <TextField value={this.state.query}
+          onChange={this.onQueryChange}
+          hintText="Search"
+          fullWidth={true}/>
         <Divider/>
       </div>
       <div className="item-bar-body">

@@ -85,7 +85,7 @@ class NewPlan extends AuthComponent{
   }
  render(){
    var actionBar=  <ModeSelectionBar onChange={(newMode)=>{this.setState({editingMode:newMode})}} mode={this.state.editingMode}/>
-  
+
    return (
      <div>
       <Subheader>
@@ -93,7 +93,7 @@ class NewPlan extends AuthComponent{
             <RaisedButton label="Save!" primary={true} onClick={this.onSubmit} style={{float:"right"}} disabled={this.shouldButtonBeDisabled()} />
       </Subheader>
       <Paper className="new-plan">
-        <h1 className="nice-heading">Create a new Plan</h1>
+        <h1 className="nice-heading">{this.heading || "Create a new Plan"}</h1>
         <TextField
           floatingLabelText="Name"
           fullWidth={false}

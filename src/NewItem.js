@@ -58,8 +58,6 @@ class NewItem extends AuthComponent{
       }
     }
     this.post("items",item,(answer)=>{
-      console.log(answer);
-      console.log(this.props);
       this.props.history.push(`/plans/${plan_id}`);
       this.props.history.goForward();
     },(fail)=>{
@@ -91,7 +89,7 @@ class NewItem extends AuthComponent{
           <RaisedButton primary={true} label="Save" disabled={this.shouldButtonBeDisabled()} onClick={this.onSubmit} style={{float:"right"}}/>
         </Subheader>
         <Paper className="new-item">
-          <h1 className="nice-heading">Create a new Item</h1>
+          <h1 className="nice-heading">{this.heading || "Create a new Item"}</h1>
           <TextField name="name" value={this.state.name} floatingLabelText="Item Name" onChange={this.onChange}/>
           <br/>
           <TextField name="description" value={this.state.description} floatingLabelText="Item description (optional)" onChange={this.onChange} multiLine={true} style={{textAlign:"left"}}/>

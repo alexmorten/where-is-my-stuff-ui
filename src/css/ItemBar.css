@@ -29,6 +29,6 @@
   max-height: 800px;
   overflow-y: scroll;
 }
-.item-selected .item-delete{
+.item-selected .item-delete, .item-selected .item-modify{
   color: white !important;
 }

@@ -3,7 +3,7 @@ import PencilMode from './PencilMode';
 import Line from '../SvgComponents/Line';
 class RectMode extends PencilMode{
   mouseUp = (loc)=>{
-    var lines = this.props.representation.lines;
+    var lines = this.props.representation.lines || [];
     if(this.state.tempPoint){
       var roundedLoc = this.roundPointToGridSize(loc,this.props.gridSize);
       if (!this.isSamePoint(roundedLoc,this.state.tempPoint)) {

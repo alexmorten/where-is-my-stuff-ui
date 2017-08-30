@@ -48,7 +48,7 @@ class PlanListing extends AuthComponent{
     return(
       <div>
         <Subheader>
-          <Link to="/new-plan" >
+          <Link to="/plans/new" >
             <RaisedButton label="Add a Plan" primary={true} style={{float:"right"}}/>
           </Link>
         </Subheader>

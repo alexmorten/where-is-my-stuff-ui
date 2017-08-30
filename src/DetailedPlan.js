@@ -11,7 +11,8 @@ import ItemBar from './ItemBar';
 import BasicDeleteDialogButton from './helperComponents/BasicDeleteDialogButton';
 import Subheader from './helperComponents/Subheader';
 import BackIcon from './helperComponents/BackIcon';
-
+import Icon from './helperComponents/Icon';
+import FontIcon from 'material-ui/FontIcon';
 class DetailedPlan extends AuthComponent{
   state={
     plan:null,
@@ -85,11 +86,18 @@ class DetailedPlan extends AuthComponent{
         onClick={()=>{this.onItemClick(item)}}
         className="interactable"/>
     })
+    var deleteIcon;
+    var modifyIcon;
+    if (plan.current_user_may_modify) {
+      deleteIcon = <BasicDeleteDialogButton title="Delete Plan" itemTitle={plan.name} delete={this.handleDelete} iconClassName="top-right"/>
+
+      modifyIcon = <Link to={`/plans/${plan.id}/modify`}><FontIcon className="material-icons" style={{position:"absolute",right:"60px"}}>edit</FontIcon></Link>
+    }
     return (
       <div>
         <Subheader>
           <BackIcon rootStyle={{float:"left"}}/>
-          <Link to={`/plans/new/${plan.id}`}>  <RaisedButton primary={true} label={`Add an Item`} style={{float:"right"}}/> </Link>
+          <Link to={`/plans/${plan.id}/items/new`}>  <RaisedButton primary={true} label={`Add an Item`} style={{float:"right"}}/> </Link>
         </Subheader>
         <div className="detailed-plan-container">
           <ItemBar
@@ -101,7 +109,8 @@ class DetailedPlan extends AuthComponent{
              getItems={this.getItems}
            />
           <Paper className="detailed-plan">
-            <BasicDeleteDialogButton title="Delete Plan" itemTitle={plan.name} delete={this.handleDelete} iconClassName="top-right"/>
+            {modifyIcon}
+            {deleteIcon}
             <h2 className="nice-heading">{plan.name}</h2>
             <Plan representation={plan.representation}>
               {otherCircles}

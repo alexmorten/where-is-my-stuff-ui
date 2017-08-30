@@ -7,6 +7,8 @@ import PlanListing from './PlanListing';
 import NewPlan from './NewPlan';
 import DetailedPlan from './DetailedPlan';
 import NewItem from './NewItem';
+import ModifyPlan from './ModifyPlan';
+import ModifyItem from './ModifyItem';
 class RouteController extends Component{
 render(){
   return(
@@ -16,8 +18,10 @@ render(){
           <Switch>
             <Route path="/register" component={Registrate}></Route>
             <Route path="/login" component={Login}></Route>
-            <Route path="/new-plan" component={NewPlan}></Route>
-              <Route path="/plans/new/:plan_id" component={NewItem}></Route>
+            <Route path="/plans/new" component={NewPlan}></Route>
+            <Route path="/plans/:plan_id/items/new" component={NewItem}></Route>
+              <Route path="/plans/:plan_id/items/:item_id/modify" component={ModifyItem}></Route>
+            <Route path="/plans/:plan_id/modify" component={ModifyPlan}></Route>
             <Route path="/plans/:plan_id" component={DetailedPlan}></Route>
             <Route path="/" component={PlanListing}></Route>
           </Switch>
