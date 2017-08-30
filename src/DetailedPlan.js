@@ -96,7 +96,7 @@ class DetailedPlan extends AuthComponent{
     return (
       <div>
         <Subheader>
-          <BackIcon rootStyle={{float:"left"}}/>
+          <BackIcon rootStyle={{float:"left"}} text="Plans"/>
           <Link to={`/plans/${plan.id}/items/new`}>  <RaisedButton primary={true} label={`Add an Item`} style={{float:"right"}}/> </Link>
         </Subheader>
         <div className="detailed-plan-container">

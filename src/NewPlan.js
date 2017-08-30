@@ -75,7 +75,7 @@ class NewPlan extends AuthComponent{
         lines:[],
         name:""
       })
-      this.props.history.push("/");
+      this.props.history.push(`plans/${plan.id}`);
       this.props.history.goForward();
     })
 
@@ -84,13 +84,13 @@ class NewPlan extends AuthComponent{
     return !(this.state.lines.length > 0 && this.state.name)
   }
  render(){
-   var actionBar=  <ModeSelectionBar onChange={(newMode)=>{this.setState({editingMode:newMode})}} mode={this.state.editingMode}/>
-
+   var actionBar =  <ModeSelectionBar onChange={(newMode)=>{this.setState({editingMode:newMode})}} mode={this.state.editingMode}/>
+   var backIcon = this.backIcon || <BackIcon rootStyle={{float:"left"}} text="Plans"/>;
    return (
      <div>
       <Subheader>
-        <BackIcon rootStyle={{float:"left"}}/>
-            <RaisedButton label="Save!" primary={true} onClick={this.onSubmit} style={{float:"right"}} disabled={this.shouldButtonBeDisabled()} />
+        {backIcon}
+        <RaisedButton label="Save!" primary={true} onClick={this.onSubmit} style={{float:"right"}} disabled={this.shouldButtonBeDisabled()} />
       </Subheader>
       <Paper className="new-plan">
         <h1 className="nice-heading">{this.heading || "Create a new Plan"}</h1>

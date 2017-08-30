@@ -1,6 +1,7 @@
 import React from 'react';
 import NewPlan from './NewPlan';
 import Store from './services/Store';
+import BackIcon from './helperComponents/BackIcon';
 class ModifyPlan extends NewPlan{
   onSubmit = (e)=>{
     e.preventDefault();
@@ -21,7 +22,9 @@ class ModifyPlan extends NewPlan{
     })
 
   }
+  componentWillMount(){
 
+  }
   componentDidMount(){
     this.heading = "Modify ...";
     this.plan_id = this.props.match.params.plan_id;
@@ -30,6 +33,7 @@ class ModifyPlan extends NewPlan{
       var lines = plan.representation.lines;
       var labels = plan.representation.labels;
       this.heading = `Modify "${name}"`
+      this.backIcon = <BackIcon rootStyle={{float:"left"}} text={` "${plan.name}"`} to={`/plans/${plan.id}`}/>;
       this.setState({
         name:name,
         lines:lines,
