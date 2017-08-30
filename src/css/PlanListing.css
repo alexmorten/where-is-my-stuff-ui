@@ -1,3 +1,4 @@
+
 .plan-listing{
 display: flex;
 flex-wrap: wrap;
@@ -7,4 +8,9 @@ flex-wrap: wrap;
   margin: 10px auto;
   padding: 10px 20px;
   width: 100%;
+}
+.no-plans{
+  max-width: 600px;
+  margin: 30vh auto 0 auto;
+  padding: 10px 20px;
 }

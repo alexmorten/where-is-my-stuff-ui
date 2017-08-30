@@ -42,11 +42,28 @@ class PlanListing extends AuthComponent{
     this.getPlans();
   }
   render(){
+    var noPlans;
+
+    if (this.state.plans.length === 0) {
+      noPlans = (
+        <Paper className="no-plans">
+          <h1 className="nice-heading">You don't have any Plans :(</h1>
+          <p className="nice-heading">
+            Feel free to add one:
+            <Link to="/plans/new" >
+              <RaisedButton label="Add a Plan" primary={true}/>
+            </Link>
+          </p>
+
+        </Paper>
+      )
+    }
     var plans= this.state.plans.map((plan)=>{
       return <SinglePlan plan={plan} key={plan.id} />
     });
     return(
       <div>
+        {noPlans}
         <Subheader>
           <Link to="/plans/new" >
             <RaisedButton label="Add a Plan" primary={true} style={{float:"right"}}/>

@@ -9,6 +9,7 @@ import BasicDeleteDialogButton from './helperComponents/BasicDeleteDialogButton'
 import Icon from './helperComponents/Icon';
 import FontIcon from 'material-ui/FontIcon';
 import {Link} from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton'
 class Item extends React.Component{
   onClick=()=>{
     if(this.props.onClick){
@@ -81,10 +82,20 @@ render(){
   });
   var noItemMessage;
   if(items.length === 0){
+    var itemAddMessage;
+    if(this.props.plan && this.props.plan.id){
+    itemAddMessage= (
+     <p className="nice-heading">
+        <Link to={`/plans/${this.props.plan.id}/items/new`}>
+          <RaisedButton primary={true} label={`Add an Item`}/>
+        </Link>
+      </p> )
+    }
     noItemMessage = (
       <div>
       <Divider/>
-      <h4 className="nice-heading">No Items Found</h4>
+      <h2 className="nice-heading">No Items Found</h2>
+      {itemAddMessage}
       </div>
     )
   }
