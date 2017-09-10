@@ -3,7 +3,7 @@ import Store from './services/Store';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import queryString from 'query-string';
 import StorageAdaptor from './services/StorageAdaptor';
 import './css/Login.css';
@@ -124,4 +124,4 @@ class Login extends Component{
     );
   }
 }
-export default Login;
+export default withRouter(Login);

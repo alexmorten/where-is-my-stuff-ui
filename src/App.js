@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './css/App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {NavLink} from 'react-router-dom';
+import {NavLink,withRouter} from 'react-router-dom';
 import Store from './services/Store';
 
 class App extends Component {
   handleLogout = ()=>{
     Store.deauthenticate();
-    this.forceUpdate();
     this.props.history.push("/login");
     this.props.history.goForward();
+    this.forceUpdate();
     }
 
   render() {
@@ -46,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

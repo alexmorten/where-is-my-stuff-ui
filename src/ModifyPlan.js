@@ -16,8 +16,7 @@ class ModifyPlan extends NewPlan{
     };
     this.update(`plans/${this.plan_id}`,plan,(data)=>{
 
-      this.props.history.push(`plans/${this.plan_id}`);
-      this.props.history.goForward();
+      this.transitionTo(`plans/${this.plan_id}`);
     })
 
   }
@@ -40,8 +39,7 @@ class ModifyPlan extends NewPlan{
       });
     },(fail)=>{
       console.log(fail);
-      this.props.history.push("/");
-      this.props.history.goForward();
+      this.transitionTo("");
     })
   }
 

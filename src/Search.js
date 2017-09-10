@@ -2,7 +2,8 @@ import React from 'react';
 import ItemBar from './ItemBar';
 import Subheader from './helperComponents/Subheader';
 import BackIcon from './helperComponents/BackIcon';
-class Search extends React.Component{
+import AuthComponent from './helperComponents/AuthComponent';
+class Search extends AuthComponent{
   state={
     items:[]
   }
@@ -10,8 +11,7 @@ class Search extends React.Component{
     this.setState({items:items});
   }
   onItemClick = (item)=>{
-    this.props.history.push(`plans/${item.plan.id}`);
-    this.props.history.goForward();
+    this.transitionTo(`plans/${item.plan.id}`);
   }
   render(){
     return (

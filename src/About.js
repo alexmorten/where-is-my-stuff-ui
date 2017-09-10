@@ -18,7 +18,8 @@ render(){
           that I rarely or never need,
           so I can’t know out of habit where it is
           or it has been relocated by someone else than me (mothers or significant others are very good at this).
-          <br/>
+        </p>
+
           <h2 className="nice-heading">This website is supposed to be a solution</h2>
           <p>
             You can create <b>plans</b> of your basement, drawer, kitchen, whole home ect.
@@ -32,7 +33,6 @@ render(){
 
 
 
-        </p>
         <h2 className="nice-heading">Want to look at my code?</h2>
         <p className="nice-heading">
           <a href="https://github.com/alexmorten/where-is-my-stuff-ui" style={{color:"blue"}} >The UI</a> <br/>

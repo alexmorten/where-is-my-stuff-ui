@@ -22,8 +22,7 @@ class NewItem extends AuthComponent{
       this.setState({plan:plan})
     },(fail)=>{
       console.log(fail);
-      this.props.history.push("/");
-      this.props.history.goForward();
+      this.transitionTo("/");
     })
   }
   componentDidMount(){
@@ -58,8 +57,7 @@ class NewItem extends AuthComponent{
       }
     }
     this.post("items",item,(answer)=>{
-      this.props.history.push(`/plans/${plan_id}`);
-      this.props.history.goForward();
+      this.transitionTo(`plans/${plan_id}`);
     },(fail)=>{
       console.log(fail);
     })

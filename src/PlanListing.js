@@ -48,13 +48,15 @@ class PlanListing extends AuthComponent{
       noPlans = (
         <Paper className="no-plans">
           <h1 className="nice-heading">You don't have any Plans :(</h1>
+            <div>
           <p className="nice-heading">
             Feel free to add one:
+          </p>
             <Link to="/plans/new" >
               <RaisedButton label="Add a Plan" primary={true}/>
             </Link>
-          </p>
 
+          </div>
         </Paper>
       )
     }

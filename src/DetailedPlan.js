@@ -26,8 +26,7 @@ class DetailedPlan extends AuthComponent{
       this.setState({plan:plan,loading:false});
     },(fail)=>{
       console.log(fail);
-      this.props.history.push("/");
-      this.props.history.goForward();
+      this.transitionTo("");
     })
   }
   componentDidMount(){
@@ -60,8 +59,7 @@ class DetailedPlan extends AuthComponent{
   handleDelete=()=>{
     var plan = this.state.plan;
     this.delete(`plans/${plan.id}`,()=>{
-      this.props.history.push("/");
-      this.props.history.goForward();
+      this.transitionTo("/");
     },(fail)=>{console.log(fail);})
   }
   render(){
@@ -69,18 +67,20 @@ class DetailedPlan extends AuthComponent{
       return <Loading />
     }
     var plan = this.state.plan;
-    var selectedCirlces = this.state.items.filter((item)=>isItemInItemArr(item,this.state.selectedItems)).map((item)=>{
+    var selectedCirlces = this.state.items.filter((item)=>isItemInItemArr(item,this.state.selectedItems)).map((item,i)=>{
       return <Circle
+        key={`circles ${i}`}
         point={{x:item.representation.x,y:item.representation.y}}
         radius={12}
         style={{stroke:'black',strokeWidth:2}}
         onClick={()=>{this.onItemClick(item)}}
         className="interactable"/>
     });
-    var otherCircles  = this.state.items.filter((item)=>!isItemInItemArr(item,this.state.selectedItems)).map((item)=>{
+    var otherCircles  = this.state.items.filter((item)=>!isItemInItemArr(item,this.state.selectedItems)).map((item,i)=>{
 
       return <Circle
-         point={{x:item.representation.x,y:item.representation.y}}
+        key={`other circles ${i}`}
+        point={{x:item.representation.x,y:item.representation.y}}
         radius={ 7}
         onClick={()=>{this.onItemClick(item)}}
         className="interactable"/>

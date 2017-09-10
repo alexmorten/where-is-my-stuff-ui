@@ -16,9 +16,8 @@ class Item extends React.Component{
     }
   }
 render(){
-  var {item,className,onClick,showPlan,...rest} = this.props;
+  var {item,className,onClick,showPlan,onDelete,...rest} = this.props;
   var planItem;
-  console.log(showPlan);
   if(showPlan){
     planItem = (
       <span
@@ -35,7 +34,7 @@ render(){
     <BasicDeleteDialogButton
       title="Delete Item"
       itemTitle={item.name}
-      delete={()=>{this.props.onDelete(item)}}
+      delete={()=>{onDelete(item)}}
       iconClassName="top-right"
       rootClassName="item-delete"/>
     <Link to={`/plans/${item.plan.id}/items/${item.id}/modify`} style={{position:"absolute",left:"0",top:"0"}}>
@@ -97,11 +96,11 @@ render(){
     var itemAddMessage;
     if(this.props.plan && this.props.plan.id){
     itemAddMessage= (
-     <p className="nice-heading">
+     <div className="nice-heading">
         <Link to={`/plans/${this.props.plan.id}/items/new`}>
           <RaisedButton primary={true} label={`Add an Item`}/>
         </Link>
-      </p> )
+      </div> )
     }
     noItemMessage = (
       <div>

@@ -19,11 +19,9 @@ class ModifyItem extends NewItem{
       }
     }
     this.update(`items/${this.item_id}`,item,(answer)=>{
-      this.props.history.push(`/plans/${plan_id}`);
-      this.props.history.goForward();
+      this.transitionTo(`plans/${plan_id}`);
     },(fail)=>{
-      this.props.history.push(`/plans/${plan_id}`);
-      this.props.history.goForward();
+      this.transitionTo(`plans/${plan_id}`);
     })
   }
   componentDidMount(){
@@ -45,8 +43,7 @@ class ModifyItem extends NewItem{
       })
     },(fail)=>{
       console.log(fail);
-      this.props.history.push(`/`);
-      this.props.history.goForward();
+      this.transitionTo("");
     })
   }
 }

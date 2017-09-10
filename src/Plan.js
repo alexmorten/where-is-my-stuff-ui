@@ -24,8 +24,8 @@ class Plan extends React.Component{
     const lineItems = lines.map((line,index)=>{
       return <Line p1={line.p1} p2={line.p2} key={index} style={line.color ? {stroke:line.color}: {}}/>
     })
-    const labelItems = labels.map((label)=>{
-      return  <text x={label.origin.x} y={label.origin.y} fill={label.color || "white"}>{label.text}</text>
+    const labelItems = labels.map((label,i)=>{
+      return  <text key={`label ${i}`} x={label.origin.x} y={label.origin.y} fill={label.color || "white"}>{label.text}</text>
     });
 
     return (

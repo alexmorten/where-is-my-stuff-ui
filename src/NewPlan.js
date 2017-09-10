@@ -74,8 +74,8 @@ class NewPlan extends AuthComponent{
         lines:[],
         name:""
       })
-      this.props.history.push(`plans/${plan.id}`);
-      this.props.history.goForward();
+      this.transitionTo(`plans/${plan.id}`);
+      
     })
 
   }

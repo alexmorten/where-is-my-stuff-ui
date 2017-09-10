@@ -3,9 +3,9 @@ import Store from './services/Store';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import './css/Registrate.css';
+import './css/Register.css';
 import Paper from 'material-ui/Paper';
-class Registrate extends Component{
+class Register extends Component{
   state={
     loading:false,
     sent:false,
@@ -116,4 +116,4 @@ class Registrate extends Component{
     );
   }
 }
-export default Registrate;
+export default Register;
