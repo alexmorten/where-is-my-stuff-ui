@@ -22,7 +22,7 @@ class NewItem extends AuthComponent{
       this.setState({plan:plan})
     },(fail)=>{
       console.log(fail);
-      this.transitionTo("/");
+      this.transitionTo("");
     })
   }
   componentDidMount(){

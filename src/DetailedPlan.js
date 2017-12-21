@@ -59,7 +59,7 @@ class DetailedPlan extends AuthComponent{
   handleDelete=()=>{
     var plan = this.state.plan;
     this.delete(`plans/${plan.id}`,()=>{
-      this.transitionTo("/");
+      this.transitionTo("");
     },(fail)=>{console.log(fail);})
   }
   render(){
